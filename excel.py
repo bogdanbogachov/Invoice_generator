@@ -2,10 +2,15 @@ import openpyxl
 import quick
 import interface
 import subprocess
+import os
 
 quick.main()
 
-theFile = openpyxl.load_workbook('template.xlsx')
+# Finding the current folder path
+folder = os.path.dirname(os.path.abspath(__file__))
+template_path = os.path.join(folder, "template.xlsx")
+
+theFile = openpyxl.load_workbook(template_path)
 
 theFile["Sheet1"]["B1"] = quick.summary
 theFile["Sheet1"]["B2"] = quick.location

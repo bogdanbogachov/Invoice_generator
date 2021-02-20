@@ -17,6 +17,10 @@ end_time = None
 place = None
 summary = None
 
+# finding the current folder path
+folder = os.path.dirname(os.path.abspath(__file__))
+credentials_path = os.path.join(folder, "credentials.json")
+
 def main():
     """Shows basic usage of the Google Calendar API.
     Prints the start and name of the next 10 events on the user's calendar.
@@ -34,7 +38,7 @@ def main():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                'credentials_path', SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
